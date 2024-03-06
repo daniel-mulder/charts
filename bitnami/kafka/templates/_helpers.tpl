@@ -495,6 +495,9 @@ Returns the Kafka listeners settings based on the listeners.* object
   {{- if and .context.Values.externalAccess.enabled -}}
   {{- $listeners = append $listeners .context.Values.listeners.external -}}
   {{- end -}}
+  {{- range $i := .context.Values.listeners.extraListeners -}}
+  {{- $listeners = append $listeners $i -}}
+  {{- end -}}
   {{- if and .context.Values.kraft.enabled .isController -}}
   {{- if and .context.Values.controller.controllerOnly -}}
   {{- $listeners = list .context.Values.listeners.controller -}}
